@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
         body {
@@ -15,9 +15,7 @@
     <?php
     function calculateSum(...$nums)
     {
-        return array_reduce($nums, function ($acc, $num) {
-            return $acc + $num;
-        }, 0);
+        return array_reduce($nums, fn($acc, $num) => $acc + $num, 0);
     }
 
     function sumResult(...$nums)
@@ -27,9 +25,7 @@
 
     function calculateSquare(...$nums)
     {
-        return array_map(function ($num) {
-            return $num ** 2;
-        }, $nums);
+        return array_map(fn($num) => $num ** 2, $nums);
     }
 
     function squareResult(...$nums)
@@ -39,9 +35,7 @@
 
     function findEvenNumbers(...$nums)
     {
-        return array_filter($nums, function ($num) {
-            return $num % 2 === 0;
-        });
+        return array_filter($nums, fn($num) => $num % 2 === 0);
     }
 
     function evenResult(...$nums)
@@ -51,9 +45,7 @@
 
     function sortDescending(...$nums)
     {
-        usort($nums, function ($a, $b) {
-            return $b - $a;
-        });
+        usort($nums, fn($a, $b) => $b - $a);
         return $nums;
     }
 
@@ -68,10 +60,10 @@
     }
 
     function slicedResult($indexes, ...$nums)
-{
-    list($start, $end) = $indexes;
-    return "Slice Array of " . implode(', ', $nums) . " from index $start to index $end: " . implode(', ', sliceArray($start, $end, ...$nums));
-}
+    {
+        list($start, $end) = $indexes;
+        return "Slice Array of " . implode(', ', $nums) . " from index $start to index $end: " . implode(', ', sliceArray($start, $end, ...$nums));
+    }
 
     $fullName = 'First Middle Last';
     $splitName = explode(' ', $fullName);
@@ -117,9 +109,9 @@
     fetchDataSuccess();
     fetchDataError();
 
-    foreach ($splitName as $i => $name) {
+    foreach ($splitName as $i => $name):
         echo "Get Array from name " . ++$i . ": $name<br>";
-    }
+    endforeach;
 
     class Person
     {
@@ -141,10 +133,10 @@
     $person = new Person("John", 30);
     echo "<br>Class Example: {$person->sayHello()}<br>";
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["name"])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["name"])):
         $submittedName = $_POST["name"];
         echo "<br>Submitted Name: $submittedName<br>";
-    }
+    endif;
     ?>
 </div>
 <form action="" method="post" id="form">
